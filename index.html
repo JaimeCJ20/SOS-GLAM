@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOS GLAM · Que tu cliente avise a tiempo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- ============ ENCABEZADO + HERO ============ -->
+<header class="hero">
+  <div class="topbar" style="background:transparent">
+    <div class="wrap">
+      <a class="logo" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>SOS GLAM</a>
+      <nav aria-label="Principal">
+        <a href="#como">Cómo funciona</a>
+        <a href="#evidencia">Evidencia</a>
+        <a href="#precios">Precios</a>
+        <a href="login.html">Ingresar</a>
+      </nav>
+      <a class="btn btn-sm" href="registro.html">Crear mi página</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Para barberías y salones</p>
+        <h1 class="h-xl" style="margin-top:14px">Si el cliente no va a venir, que te avise antes de la hora.</h1>
+        <p class="sub">SOS GLAM envía el recordatorio por WhatsApp con un enlace para confirmar o cancelar con un toque, y libera tu agenda cuando alguien cancela. Tu cliente no instala nada.</p>
+        <div class="actions">
+          <a class="btn" href="reservar.html">Ver la reserva de tu cliente</a>
+          <a class="btn btn-ghost" href="#como">Cómo funciona</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg class="pole" viewBox="0 0 80 360" aria-hidden="true"><defs><pattern id="st" width="80" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><rect width="80" height="16" fill="#B23A3A"/><rect y="16" width="80" height="16" fill="#F4F1EA"/><rect y="32" width="80" height="16" fill="#3C6E71"/></pattern><clipPath id="tube"><rect x="14" y="34" width="52" height="292" rx="10"/></clipPath></defs><rect x="10" y="0" width="60" height="40" rx="10" fill="#C9A227"/><rect x="10" y="320" width="60" height="40" rx="10" fill="#C9A227"/><g clip-path="url(#tube)"><rect x="14" y="34" width="52" height="292" fill="url(#st)"/></g><rect x="20" y="40" width="8" height="280" rx="4" fill="#fff" opacity=".25"/></svg>
+        <div class="phone" role="group" aria-label="Demo del recordatorio de cita">
+          <div class="chat" id="chat">
+            <div class="chat-head">WhatsApp · recordatorio de SOS GLAM</div>
+            <div class="bubble">Hola Carlos, tu corte es mañana a las 4:00 p. m. en Barbería El Flaco. Confirma o cancela aquí: sosglam.pe/c/k3x9</div>
+            <div class="cap">Al tocar el enlace se abre tu cita:</div>
+            <div class="replies" id="replies">
+              <button type="button" data-a="yes">Confirmo mi cita</button>
+              <button type="button" data-a="no">No podré asistir</button>
+            </div>
+            <div class="slot" id="slot"><span>Mañana 4:00 p. m.</span><b>Reservado</b></div>
+          </div>
+        </div>
+        <p class="demo-note">Toca una respuesta y mira qué pasa con la agenda.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ PROBLEMA ============ -->
+<section class="section" id="problema">
+  <div class="wrap">
+    <p class="eyebrow">El problema</p>
+    <h2 class="h-lg" style="margin-top:12px">Las 4 barberías entrevistadas reportaron citas vacías.</h2>
+    <p class="lead">En nuestras primeras 4 entrevistas en Surquillo, Miraflores y La Molina, las 4 contaron que pierden citas por ausencias, incluso las que usan software. Es una muestra pequeña: orienta, no generaliza.</p>
+    <div class="stats">
+      <div class="stat"><strong>4 de 4</strong><span>locales entrevistados tienen no-shows</span></div>
+      <div class="stat"><strong>10–20%</strong><span>tasa de no-show reportada por una barbería</span></div>
+      <div class="stat"><strong>~2 h</strong><span>diarias en WhatsApp, según esa misma barbería</span></div>
+      <div class="stat"><strong>S/ 200</strong><span>pérdida máxima reportada por un local</span></div>
+    </div>
+    <p class="callout">Estimación: ~2 h diarias en un local equivalen a unas 60 h al mes. Es el dato de una barbería, no un promedio.</p>
+  </div>
+</section>
+
+<!-- ============ CÓMO FUNCIONA ============ -->
+<section class="section" id="como" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Cómo funciona</p>
+    <h2 class="h-lg" style="margin-top:12px">Tres pasos, con WhatsApp como canal.</h2>
+    <ol class="steps">
+      <li><h3>Reserva sin instalar nada</h3><p>Tu cliente reserva en la página de tu local. Tú dejas de anotar citas a mano.</p></li>
+      <li><h3>Recordatorio con enlace</h3><p>Antes de la cita sale un mensaje de WhatsApp con un enlace para confirmar o cancelar.</p></li>
+      <li><h3>Cancela en un toque</h3><p>Si no puede ir, toca “No podré asistir” y el horario se libera en tu agenda.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FUNCIONES ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Lo que incluye</p>
+    <h2 class="h-lg" style="margin-top:12px">Todo tu local en una sola pantalla.</h2>
+    <div class="features">
+      <article class="feature">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="10" width="34" height="31" rx="4"/><path d="M7 19h34M16 6v8M32 6v8"/></svg>
+        <h3>Agenda por barbero</h3><p>Una columna por silla. Mueve citas arrastrando.</p>
+      </article>
+      <article class="feature">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 38 12 30a15 15 0 1 1 6 6z"/><path d="M19 22h10M19 27h6"/></svg>
+        <h3>Recordatorios</h3><p>Mensaje de WhatsApp con enlace para confirmar o cancelar.</p>
+      </article>
+      <article class="feature">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="17" r="7"/><path d="M6 40c0-7 5-12 12-12s12 5 12 12"/><circle cx="34" cy="19" r="5"/><path d="M33 29c6 0 10 4 10 10"/></svg>
+        <h3>Clientes</h3><p>Quién viene, cada cuánto y quién suele faltar.</p>
+      </article>
+      <article class="feature">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20 10 8h28l4 12M6 20v20h36V20M18 40V28h12v12"/></svg>
+        <h3>Tu página</h3><p>Un enlace propio para compartir en Instagram y WhatsApp.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARACIÓN ============ -->
+<section class="section vs">
+  <div class="wrap">
+    <p class="eyebrow">Lo que escuchamos</p>
+    <h2 class="h-lg" style="margin-top:12px">Lo que nos contaron los locales.</h2>
+    <div class="cmp">
+      <div class="col">
+        <h3>Hoy, según las entrevistas</h3>
+        <ul>
+          <li>Una barbería con WhatsApp manual dedica ~2 h al día a coordinar citas.</li>
+          <li>Dos barberías con Fresha reportan 1–2 ausencias por jornada o periodo.</li>
+          <li>Una pide una forma simple para que el cliente avise que no irá.</li>
+          <li>Una atiende presencial y quiere que sus clientes puedan agendar.</li>
+        </ul>
+      </div>
+      <div class="col us">
+        <h3>Lo que vamos a probar</h3>
+        <ul>
+          <li>Recordatorio por WhatsApp con enlace para confirmar o cancelar.</li>
+          <li>Cancelación en un toque que libera el horario.</li>
+          <li>Agenda en tiempo real para el local.</li>
+          <li>Por validar en un piloto: cuánto reduce los no-shows.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note-dark">Fresha también envía recordatorios automáticos. El piloto medirá si el enlace por WhatsApp mejora la respuesta del cliente.</p>
+  </div>
+</section>
+
+<!-- ============ EVIDENCIA ============ -->
+<section class="section" id="evidencia">
+  <div class="wrap">
+    <p class="eyebrow">Evidencia</p>
+    <h2 class="h-lg" style="margin-top:12px">Lo que reportó cada barbería.</h2>
+    <p class="lead">Datos de las primeras 4 entrevistas, sin nombres de local. Cada uno usa su propia unidad (por semana o por periodo).</p>
+    <div class="table-wrap" style="margin-top:32px">
+      <table class="table">
+        <thead><tr><th>Local</th><th>Sistema actual</th><th>No-shows</th><th>Pérdida estimada</th></tr></thead>
+        <tbody>
+          <tr><td>Barbería A · Surquillo</td><td>WhatsApp manual</td><td>10–20% (1–2 de cada 10)</td><td>S/ 150–200 por semana</td></tr>
+          <tr><td>Barbería B · Miraflores</td><td>Fresha + WhatsApp</td><td>1–2 personas por jornada</td><td>S/ 120–200 por periodo</td></tr>
+          <tr><td>Barbería C · Miraflores</td><td>Fresha</td><td>1–2 personas por periodo</td><td>S/ 70–140 por periodo</td></tr>
+          <tr><td>Barbería D · La Molina</td><td>Presencial, rara vez WhatsApp</td><td>~2 personas por periodo</td><td>S/ 45–50 por periodo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRECIOS ============ -->
+<section class="section" id="precios" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Precios</p>
+    <h2 class="h-lg" style="margin-top:12px">Empieza gratis. Paga cuando te sirva.</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3 class="h-sm">Gratis</h3>
+        <p class="price">S/ 0</p>
+        <p class="muted small">Para empezar a recibir reservas</p>
+        <ul><li>Página y enlace del local</li><li>Reservas web ilimitadas</li><li>Agenda y recordatorios</li></ul>
+        <a class="btn btn-ghost btn-block" href="registro.html">Crear mi página</a>
+      </div>
+      <div class="plan pro">
+        <div class="row"><h3 class="h-sm">PRO</h3><span class="tag tag-pro">Próximamente</span></div>
+        <p class="price">S/ [__]</p>
+        <p class="muted small">al mes · precio por validar</p>
+        <ul><li>Números: ingresos y no-shows</li><li>Métricas por barbero</li><li>Historial completo de clientes</li></ul>
+        <a class="btn btn-block" href="#contacto">Quiero el piloto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section cta" id="contacto">
+  <div class="wrap">
+    <h2 class="h-lg">Probemos el recordatorio en tu barbería.</h2>
+    <p>Armamos un piloto corto para medir cuántas ausencias se evitan. Escríbenos y coordinamos.</p>
+    <a class="btn" href="https://wa.me/?text=Hola%20SOS%20GLAM%2C%20quiero%20un%20piloto%20en%20mi%20barber%C3%ADa" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>SOS GLAM · Proyecto StartUp ESAN 2026-2</span>
+    <span class="spacer"></span>
+    <a href="login.html">Ingresar</a>
+    <a href="#">Términos</a>
+    <a href="#">Privacidad</a>
+  </div>
+</footer>
+
+<script src="js/landing.js"></script>
+</body>
+</html>

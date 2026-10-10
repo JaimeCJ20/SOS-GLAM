@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ingresar · SOS GLAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<!-- ACCESO DEL DUEÑO Y SU EQUIPO. El cliente final nunca inicia sesión. -->
+<div class="split">
+  <aside class="split-brand">
+    <a class="logo" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>SOS GLAM</a>
+    <div>
+      <h2>Tu agenda, sin perder citas.</h2>
+      <p>Revisa quién confirmó, quién canceló y qué horas quedan libres hoy.</p>
+    </div>
+    <p class="quote">Panel para dueños y barberos. Tus clientes reservan sin cuenta.</p>
+  </aside>
+
+  <main class="split-form">
+    <div class="auth">
+      <h1 class="h-md">Ingresar</h1>
+      <p class="muted" style="margin-top:8px">Te enviamos un enlace a tu correo. Sin contraseñas.</p>
+
+      <form class="stack" style="margin-top:28px" action="panel/agenda.html">
+        <div class="field">
+          <label class="label" for="mail">Correo</label>
+          <input class="input" id="mail" type="email" autocomplete="email" placeholder="tu@correo.com">
+        </div>
+        <button class="btn btn-block" type="submit">Enviarme el enlace</button>
+      </form>
+
+      <div class="divider">o</div>
+      <a class="btn btn-google btn-block" href="panel/agenda.html">Continuar con Google</a>
+
+      <p class="small muted" style="margin-top:28px;text-align:center">¿Aún no tienes cuenta? <a href="registro.html">Crea la página de tu local</a></p>
+    </div>
+  </main>
+</div>
+</body>
+</html>

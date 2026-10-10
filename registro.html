@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crea tu página · SOS GLAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<!--
+  ASISTENTE DE REGISTRO (onboarding) · 5 pasos
+  Este archivo muestra el paso 2 (Servicios). Los demás pasos usan el
+  mismo esqueleto: barra lateral + contenido + pie con Atrás / Siguiente.
+-->
+<div class="wizard">
+  <aside class="wizard-side">
+    <a class="logo" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>SOS GLAM</a>
+    <ol class="wizard-steps">
+      <li class="done"><span>✓</span>Tu local</li>
+      <li class="current"><span>2</span>Servicios</li>
+      <li><span>3</span>Equipo y horarios</li>
+      <li><span>4</span>Fotos y redes</li>
+      <li><span>5</span>Tu enlace</li>
+    </ol>
+    <p class="small" style="color:#8D8977;margin-top:48px">Te toma unos 10 minutos. Puedes cambiar todo después.</p>
+  </aside>
+
+  <main class="wizard-main">
+    <p class="eyebrow">Paso 2 de 5</p>
+    <h1 class="h-lg" style="margin-top:10px">¿Qué servicios ofreces?</h1>
+    <p class="lead">Marca los que haces y ajusta precio y duración. La duración define qué horas se muestran libres.</p>
+    <div class="progress" aria-hidden="true"><i style="width:40%"></i></div>
+
+    <div class="svc-rows">
+      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte"><b>Corte</b><input class="input" value="S/ 25" aria-label="Precio"><input class="input" value="45 min" aria-label="Duración"></div>
+      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte + barba"><b>Corte + barba</b><input class="input" value="S/ 35" aria-label="Precio"><input class="input" value="75 min" aria-label="Duración"></div>
+      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Barba"><b>Barba</b><input class="input" value="S/ 15" aria-label="Precio"><input class="input" value="30 min" aria-label="Duración"></div>
+      <div class="svc-row off"><input type="checkbox" aria-label="Activar Tinte"><b>Tinte</b><input class="input" value="S/ 80" aria-label="Precio"><input class="input" value="90 min" aria-label="Duración"></div>
+      <div class="svc-row off"><input type="checkbox" aria-label="Activar Perfilado"><b>Perfilado</b><input class="input" value="S/ 12" aria-label="Precio"><input class="input" value="30 min" aria-label="Duración"></div>
+    </div>
+    <button class="btn btn-ghost btn-sm" type="button" style="margin-top:16px">+ Agregar otro servicio</button>
+
+    <div class="wizard-foot">
+      <a class="btn btn-ghost" href="#">Atrás</a>
+      <a class="btn" href="panel/agenda.html">Siguiente</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

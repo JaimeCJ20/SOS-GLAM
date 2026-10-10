@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserva en Barbería El Flaco · SOS GLAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<!--
+  PÁGINA PÚBLICA DEL LOCAL
+  En producción la URL será sosglam.pe/<slug-del-local> y los datos
+  (nombre, servicios, barberos, horas libres) vendrán de la base de datos.
+-->
+
+<div class="shop-cover" role="img" aria-label="Portada del local"></div>
+
+<main class="wrap">
+  <div class="shop-head">
+    <div class="shop-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div>
+    <div class="shop-meta">
+      <h1>Barbería El Flaco</h1>
+      <p>Av. Larco 123, Miraflores · Abierto hasta las 8:00 p. m.</p>
+    </div>
+    <div class="shop-links">
+      <a class="pill" href="#">Instagram</a>
+      <a class="pill" href="#">TikTok</a>
+      <a class="pill" href="#">Cómo llegar</a>
+    </div>
+  </div>
+
+  <div class="booking">
+    <div>
+      <!-- PASO 1 -->
+      <section class="step" aria-labelledby="p1">
+        <div class="step-head"><span class="step-num">1</span><h2 id="p1">¿Qué te haces hoy?</h2></div>
+        <div class="svc-grid" data-group="servicio">
+          <button class="svc" type="button" aria-pressed="true" data-name="Corte" data-price="25" data-min="45"><span><b>Corte</b><small>45 min</small></span><span class="price">S/ 25</span></button>
+          <button class="svc" type="button" aria-pressed="false" data-name="Barba" data-price="15" data-min="30"><span><b>Barba</b><small>30 min</small></span><span class="price">S/ 15</span></button>
+          <button class="svc" type="button" aria-pressed="false" data-name="Corte + barba" data-price="35" data-min="75"><span><b>Corte + barba</b><small>75 min</small></span><span class="price">S/ 35</span></button>
+          <button class="svc" type="button" aria-pressed="false" data-name="Perfilado" data-price="12" data-min="30"><span><b>Perfilado</b><small>30 min</small></span><span class="price">S/ 12</span></button>
+        </div>
+      </section>
+
+      <!-- PASO 2 -->
+      <section class="step" aria-labelledby="p2">
+        <div class="step-head"><span class="step-num">2</span><h2 id="p2">¿Con quién?</h2></div>
+        <div class="barbers" data-group="barbero">
+          <button class="barber" type="button" aria-pressed="true" data-name="Cualquiera"><span class="avatar">?</span><b>Cualquiera</b><small>El primero libre</small></button>
+          <button class="barber" type="button" aria-pressed="false" data-name="Juan"><span class="avatar">J</span><b>Juan</b><small>Especialista en fade</small></button>
+          <button class="barber" type="button" aria-pressed="false" data-name="Carlos"><span class="avatar">C</span><b>Carlos</b><small>Cortes clásicos</small></button>
+          <button class="barber" type="button" aria-pressed="false" data-name="Mía"><span class="avatar">M</span><b>Mía</b><small>Barba y diseño</small></button>
+        </div>
+      </section>
+
+      <!-- PASO 3 -->
+      <section class="step" aria-labelledby="p3">
+        <div class="step-head"><span class="step-num">3</span><h2 id="p3">¿Cuándo?</h2></div>
+        <div class="chips" data-group="dia">
+          <button class="chip" type="button" aria-pressed="true" data-name="Hoy, sáb 10 oct">Hoy</button>
+          <button class="chip" type="button" aria-pressed="false" data-name="Dom 11 oct">dom 11</button>
+          <button class="chip" type="button" aria-pressed="false" data-name="Lun 12 oct">lun 12</button>
+          <button class="chip" type="button" aria-pressed="false" data-name="Mar 13 oct">mar 13</button>
+          <button class="chip" type="button" aria-pressed="false" data-name="Mié 14 oct">mié 14</button>
+        </div>
+        <div class="slot-group">
+          <span class="label">Tarde</span>
+          <div class="chips" data-group="hora">
+            <button class="chip" type="button" aria-pressed="false" data-name="3:00 p. m.">3:00</button>
+            <button class="chip" type="button" disabled>3:30</button>
+            <button class="chip" type="button" aria-pressed="true" data-name="4:00 p. m.">4:00</button>
+            <button class="chip" type="button" aria-pressed="false" data-name="4:30 p. m.">4:30</button>
+            <button class="chip" type="button" disabled>5:00</button>
+            <button class="chip" type="button" aria-pressed="false" data-name="5:30 p. m.">5:30</button>
+          </div>
+        </div>
+        <div class="slot-group">
+          <span class="label">Noche</span>
+          <div class="chips" data-group="hora">
+            <button class="chip" type="button" aria-pressed="false" data-name="6:00 p. m.">6:00</button>
+            <button class="chip" type="button" aria-pressed="false" data-name="6:30 p. m.">6:30</button>
+            <button class="chip" type="button" disabled>7:00</button>
+            <button class="chip" type="button" aria-pressed="false" data-name="7:30 p. m.">7:30</button>
+          </div>
+        </div>
+        <p class="hint" style="margin-top:14px">Solo se muestran horas libres. Las tachadas ya están ocupadas.</p>
+      </section>
+
+      <!-- PASO 4 -->
+      <section class="step" aria-labelledby="p4">
+        <div class="step-head"><span class="step-num">4</span><h2 id="p4">Tus datos</h2></div>
+        <div class="form-grid">
+          <div class="field"><label class="label" for="nom">Tu nombre</label><input class="input" id="nom" autocomplete="name" placeholder="María Torres"></div>
+          <div class="field"><label class="label" for="tel">Tu WhatsApp</label><input class="input" id="tel" inputmode="tel" autocomplete="tel" placeholder="987 654 321"></div>
+          <label class="check full"><input type="checkbox" id="ok"><span>Acepto que mi nombre y celular se usen solo para gestionar esta cita y enviarme recordatorios, conforme a la Ley 29733.</span></label>
+          <label class="check full"><input type="checkbox" checked><span>Quiero recordatorio por WhatsApp.</span></label>
+        </div>
+      </section>
+    </div>
+
+    <!-- RESUMEN -->
+    <aside class="summary" aria-label="Resumen de la reserva">
+      <h3>Tu reserva</h3>
+      <dl>
+        <dt>Servicio</dt><dd id="s-servicio">Corte</dd>
+        <dt>Con</dt><dd id="s-barbero">Cualquiera</dd>
+        <dt>Día</dt><dd id="s-dia">Hoy, sáb 10 oct</dd>
+        <dt>Hora</dt><dd id="s-hora">4:00 p. m.</dd>
+        <dt>Duración</dt><dd id="s-min">45 min</dd>
+      </dl>
+      <div class="total"><span>Total</span><b id="s-precio">S/ 25</b></div>
+      <a class="btn btn-block" href="cita.html">Confirmar reserva</a>
+      <p class="hint small">Sin cuenta ni contraseña. Pagas en el local.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><span>Reservas con SOS GLAM</span><span class="spacer"></span><a href="index.html">¿Tienes una barbería?</a></div>
+</footer>
+
+<script src="js/reservar.js"></script>
+</body>
+</html>

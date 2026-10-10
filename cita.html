@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tu cita · SOS GLAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<!--
+  PÁGINA DE LA CITA
+  En producción: sosglam.pe/c/<token-secreto>. Es el enlace que llega por WhatsApp.
+  El cliente confirma o cancela sin iniciar sesión.
+-->
+
+<main class="center-page">
+  <div class="card confirm">
+    <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg></div>
+    <h1 class="h-md" style="text-align:center">¡Listo, María!</h1>
+    <p class="muted" style="text-align:center;margin-top:8px">Te esperamos en Barbería El Flaco.</p>
+
+    <dl class="detail">
+      <dt>Día y hora</dt><dd>Sábado 10 de octubre · 4:00 p. m.</dd>
+      <dt>Servicio</dt><dd>Corte · 45 min</dd>
+      <dt>Barbero</dt><dd>Juan</dd>
+      <dt>Precio</dt><dd>S/ 25 · pagas en el local</dd>
+      <dt>Dirección</dt><dd>Av. Larco 123, Miraflores</dd>
+      <dt>Estado</dt><dd><span class="tag tag-pendiente">Por confirmar</span></dd>
+    </dl>
+
+    <div class="stack" style="gap:10px">
+      <button class="btn btn-block" type="button">Confirmo mi cita</button>
+      <button class="btn btn-danger btn-block" type="button">No podré asistir</button>
+    </div>
+
+    <div class="actions-grid" style="margin-top:18px">
+      <a class="btn btn-ghost btn-sm" href="#">Agregar al calendario</a>
+      <a class="btn btn-ghost btn-sm" href="#">Cómo llegar</a>
+    </div>
+
+    <p class="hint" style="text-align:center;margin-top:20px">Si cancelas, la hora se libera al instante para otro cliente.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><span>Reservas con SOS GLAM</span></div>
+</footer>
+</body>
+</html>
