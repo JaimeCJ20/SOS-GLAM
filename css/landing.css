@@ -1,6 +1,6 @@
 /* SOS GLAM · landing.css — estilos solo de index.html */
 
-.hero{background:var(--hero-bg);color:var(--hero-ink)}
+.hero{background:var(--hero-bg);color:var(--hero-ink);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:48px 0 104px}
 .hero p.sub{color:var(--hero-muted);max-width:46ch;margin:22px 0 32px;font-size:19px}
 .hero .actions{display:flex;gap:14px;flex-wrap:wrap}

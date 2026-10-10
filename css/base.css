@@ -160,4 +160,5 @@ img{max-width:100%;display:block}
   .section{padding:64px 0}
   .form-grid{grid-template-columns:1fr}
   .topbar nav{display:none}
+  .card{padding:20px}
 }
