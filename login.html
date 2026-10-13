@@ -25,22 +25,28 @@
   <main class="split-form">
     <div class="auth">
       <h1 class="h-md">Ingresar</h1>
-      <p class="muted" style="margin-top:8px">Te enviamos un enlace a tu correo. Sin contraseñas.</p>
+      <p class="muted" style="margin-top:8px">Ingresa con tu correo y contraseña para abrir el panel.</p>
 
-      <form class="stack" style="margin-top:28px" action="panel/agenda.html">
+      <form id="login-form" class="stack" style="margin-top:28px">
         <div class="field">
           <label class="label" for="mail">Correo</label>
-          <input class="input" id="mail" type="email" autocomplete="email" placeholder="tu@correo.com">
+          <input class="input" id="mail" name="email" type="email" autocomplete="username" placeholder="tu@correo.com" required>
         </div>
-        <button class="btn btn-block" type="submit">Enviarme el enlace</button>
+        <div class="field">
+          <label class="label" for="password">Contraseña</label>
+          <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn-block" type="submit">Ingresar</button>
+        <div id="login-status" class="msg" hidden role="status" aria-live="polite"></div>
       </form>
 
       <div class="divider">o</div>
-      <a class="btn btn-google btn-block" href="panel/agenda.html">Continuar con Google</a>
+      <span class="btn btn-google btn-block" aria-disabled="true">Google próximamente</span>
 
       <p class="small muted" style="margin-top:28px;text-align:center">¿Aún no tienes cuenta? <a href="registro.html">Crea la página de tu local</a></p>
     </div>
   </main>
 </div>
+<script src="js/login.js"></script>
 </body>
 </html>

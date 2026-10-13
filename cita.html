@@ -24,22 +24,28 @@
     <p class="muted" style="text-align:center;margin-top:8px">Te esperamos en Barbería El Flaco.</p>
 
     <dl class="detail">
-      <dt>Día y hora</dt><dd>Sábado 10 de octubre · 4:00 p. m.</dd>
+      <dt>Día y hora</dt><dd id="appointment-datetime" data-date="2026-10-10" data-time="16:00">Sábado 10 de octubre · 4:00 p. m.</dd>
       <dt>Servicio</dt><dd>Corte · 45 min</dd>
       <dt>Barbero</dt><dd>Juan</dd>
       <dt>Precio</dt><dd>S/ 25 · pagas en el local</dd>
-      <dt>Dirección</dt><dd>Av. Larco 123, Miraflores</dd>
-      <dt>Estado</dt><dd><span class="tag tag-pendiente">Por confirmar</span></dd>
+      <dt>Dirección</dt><dd id="appointment-address">Av. Larco 123, Miraflores</dd>
+      <dt>Estado</dt><dd><span id="appointment-status" class="tag tag-pendiente">Por confirmar</span></dd>
     </dl>
 
     <div class="stack" style="gap:10px">
-      <button class="btn btn-block" type="button">Confirmo mi cita</button>
-      <button class="btn btn-danger btn-block" type="button">No podré asistir</button>
+      <button id="confirm-appointment" class="btn btn-block" type="button">Confirmo mi cita</button>
+      <button id="cancel-appointment" class="btn btn-danger btn-block" type="button">No podré asistir</button>
     </div>
 
     <div class="actions-grid" style="margin-top:18px">
-      <a class="btn btn-ghost btn-sm" href="#">Agregar al calendario</a>
-      <a class="btn btn-ghost btn-sm" href="#">Cómo llegar</a>
+      <a id="add-calendar" class="btn btn-ghost btn-sm" href="#">Agregar al calendario</a>
+      <a id="get-directions" class="btn btn-ghost btn-sm" href="#">Cómo llegar</a>
+    </div>
+
+    <div id="appointment-notice" class="msg" hidden role="status" aria-live="polite"></div>
+
+    <div style="margin-top:18px">
+      <a class="btn btn-block" href="reservar.html">Hacer otra reserva</a>
     </div>
 
     <p class="hint" style="text-align:center;margin-top:20px">Si cancelas, la hora se libera al instante para otro cliente.</p>
@@ -49,5 +55,6 @@
 <footer class="footer">
   <div class="wrap"><span>Reservas con SOS GLAM</span></div>
 </footer>
+<script src="js/cita.js"></script>
 </body>
 </html>

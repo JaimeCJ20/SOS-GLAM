@@ -15,6 +15,7 @@
 .side-nav .tag{margin-left:auto}
 .side-foot{margin-top:auto;padding:14px 12px;border-top:1px solid #34343B;font-size:13px;color:#8D8977}
 .side-foot a{color:var(--gold);word-break:break-all}
+.side-foot button{display:block;width:100%;margin-top:12px}
 
 .main{min-width:0;display:flex;flex-direction:column}
 .page-head{display:flex;align-items:center;gap:16px;padding:24px 36px;border-bottom:1px solid var(--line);background:var(--surface)}
@@ -104,7 +105,9 @@
   .sidebar{position:sticky;top:0;z-index:20;height:auto;flex-direction:row;align-items:center;gap:4px;padding:10px 12px;overflow-x:auto}
   .sidebar .logo{padding:0 10px 0 4px;font-size:0;gap:0}
   .sidebar .logo svg{width:24px;height:24px}
-  .side-local,.side-foot,.side-nav .tag{display:none}
+  .side-local,.side-nav .tag{display:none}
+  .side-foot{display:block;margin:0;padding:0;border:0;font-size:0}
+  .side-foot button{width:auto;margin:0;font-size:14px;white-space:nowrap}
   .side-nav{flex-direction:row;gap:2px}
   .side-nav a{white-space:nowrap;padding:8px 12px;font-size:14px}
   .side-nav svg{display:none}

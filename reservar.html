@@ -21,11 +21,11 @@
 
 <main class="wrap">
   <div class="shop-head">
-    <div class="shop-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div>
-    <div class="shop-meta">
+    <a class="shop-logo" href="index.html" aria-label="Ir a la página principal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></a>
+    <a class="shop-meta" href="index.html">
       <h1>Barbería El Flaco</h1>
       <p>Av. Larco 123, Miraflores · Abierto hasta las 8:00 p. m.</p>
-    </div>
+    </a>
     <div class="shop-links">
       <a class="pill" href="#">Instagram</a>
       <a class="pill" href="#">TikTok</a>
@@ -113,7 +113,8 @@
         <dt>Duración</dt><dd id="s-min">45 min</dd>
       </dl>
       <div class="total"><span>Total</span><b id="s-precio">S/ 25</b></div>
-      <a class="btn btn-block" href="cita.html">Confirmar reserva</a>
+      <button id="btn-confirmar" class="btn btn-block" type="button">Confirmar reserva</button>
+      <div id="booking-status" class="msg" hidden></div>
       <p class="hint small">Sin cuenta ni contraseña. Pagas en el local.</p>
     </aside>
   </div>

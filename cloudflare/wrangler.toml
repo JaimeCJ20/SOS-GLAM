@@ -1,0 +1,12 @@
+account_id = "ed61355abd9d90ca8a99741a6fdacead"
+name = "sos-glam-api"
+main = "src/worker.js"
+compatibility_date = "2025-07-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sos-glam"
+database_id = "7b75c94f-aa69-4f4b-bec2-899bca0acddb"
+
+[observability]
+enabled = true
