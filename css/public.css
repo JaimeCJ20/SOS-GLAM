@@ -84,6 +84,7 @@
 .wizard-steps li.current{background:var(--hero-surface);color:var(--hero-ink)}
 .wizard-steps li.current span{background:var(--gold);border-color:var(--gold);color:#1B1B1F}
 .wizard-main{padding:56px 72px;max-width:860px}
+.wizard-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .progress{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin:16px 0 40px}
 .progress i{display:block;height:100%;background:var(--gold);border-radius:999px}
 .svc-rows{display:flex;flex-direction:column;gap:10px}
@@ -100,6 +101,7 @@
   .svc-grid{grid-template-columns:1fr}
   .split-brand,.wizard-side{display:none}
   .wizard-main{padding:32px 20px}
+  .wizard-header{align-items:flex-start;flex-direction:column;gap:12px}
   .svc-row{grid-template-columns:auto 1fr;}
   .shop-links{display:none}
 }

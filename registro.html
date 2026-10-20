@@ -30,11 +30,24 @@
   </aside>
 
   <main class="wizard-main">
-    <p class="eyebrow">Paso 2 de 5</p>
-    <h1 class="h-lg" style="margin-top:10px">¿Qué servicios ofreces?</h1>
-    <p class="lead">Marca los que haces y ajusta precio y duración. La duración define qué horas se muestran libres.</p>
-    <div class="progress" aria-hidden="true"><i style="width:40%"></i></div>
+    <div class="wizard-header">
+      <p id="wizard-eyebrow" class="eyebrow">Paso 2 de 5</p>
+      <button id="reset-registration" class="btn btn-ghost btn-sm" type="button">Reiniciar registro</button>
+    </div>
+    <h1 id="wizard-title" class="h-lg" style="margin-top:10px">¿Qué servicios ofreces?</h1>
+    <p id="wizard-lead" class="lead">Marca los que haces y ajusta precio y duración. La duración define qué horas se muestran libres.</p>
+    <div class="progress" aria-hidden="true"><i id="wizard-progress" style="width:40%"></i></div>
 
+    <section id="step-local" hidden>
+      <div class="form-grid">
+        <div class="field full"><label class="label" for="shop-name">Nombre del local</label><input class="input" id="shop-name" type="text" placeholder="Barbería El Flaco"></div>
+        <div class="field"><label class="label" for="shop-district">Distrito</label><input class="input" id="shop-district" type="text" placeholder="Miraflores"></div>
+        <div class="field"><label class="label" for="shop-phone">WhatsApp del local</label><input class="input" id="shop-phone" type="tel" placeholder="987 654 321"></div>
+      </div>
+      <button id="continue-local" class="btn" type="button" style="margin-top:24px">Continuar con servicios</button>
+    </section>
+
+    <section id="step-services">
     <div class="svc-rows">
       <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte"><b>Corte</b><input class="input" value="S/ 25" aria-label="Precio"><input class="input" value="45 min" aria-label="Duración"></div>
       <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte + barba"><b>Corte + barba</b><input class="input" value="S/ 35" aria-label="Precio"><input class="input" value="75 min" aria-label="Duración"></div>
@@ -42,13 +55,25 @@
       <div class="svc-row off"><input type="checkbox" aria-label="Activar Tinte"><b>Tinte</b><input class="input" value="S/ 80" aria-label="Precio"><input class="input" value="90 min" aria-label="Duración"></div>
       <div class="svc-row off"><input type="checkbox" aria-label="Activar Perfilado"><b>Perfilado</b><input class="input" value="S/ 12" aria-label="Precio"><input class="input" value="30 min" aria-label="Duración"></div>
     </div>
-    <button class="btn btn-ghost btn-sm" type="button" style="margin-top:16px">+ Agregar otro servicio</button>
+    <button id="add-service" class="btn btn-ghost btn-sm" type="button" style="margin-top:16px">+ Agregar otro servicio</button>
+    </section>
+
+    <section id="step-account" hidden>
+      <div class="form-grid">
+        <div class="field full"><label class="label" for="owner-name">Tu nombre</label><input class="input" id="owner-name" type="text" autocomplete="name" placeholder="Juan Pérez"></div>
+        <div class="field full"><label class="label" for="owner-email">Correo para entrar a tu panel</label><input class="input" id="owner-email" type="email" autocomplete="email" placeholder="tu@barberia.com"></div>
+        <div class="field full"><label class="label" for="owner-password">Contraseña</label><input class="input" id="owner-password" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo 8 caracteres" required></div>
+      </div>
+      <p id="registration-status" class="msg msg-warn" hidden role="alert" style="margin-top:20px"></p>
+      <button id="finish-registration" class="btn" type="button" style="margin-top:24px">Crear mi página</button>
+    </section>
 
     <div class="wizard-foot">
-      <a class="btn btn-ghost" href="#">Atrás</a>
-      <a class="btn" href="panel/agenda.html">Siguiente</a>
+      <a id="wizard-back" class="btn btn-ghost" href="registro.html?step=1">Atrás</a>
+      <button id="wizard-next" class="btn" type="button">Continuar</button>
     </div>
   </main>
 </div>
+<script src="js/registro.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
         <a href="#precios">Precios</a>
         <a href="login.html">Ingresar</a>
       </nav>
-      <a class="btn btn-sm" href="registro.html">Crear mi página</a>
+      <a class="btn btn-sm" href="registro.html?new=1">Crear mi página</a>
     </div>
   </div>
 
@@ -143,22 +143,59 @@
   </div>
 </section>
 
-<!-- ============ EVIDENCIA ============ -->
+<!-- ============ CASOS REALES ============ -->
 <section class="section" id="evidencia">
   <div class="wrap">
-    <p class="eyebrow">Evidencia</p>
-    <h2 class="h-lg" style="margin-top:12px">Lo que reportó cada barbería.</h2>
-    <p class="lead">Datos de las primeras 4 entrevistas, sin nombres de local. Cada uno usa su propia unidad (por semana o por periodo).</p>
-    <div class="table-wrap" style="margin-top:32px">
-      <table class="table">
-        <thead><tr><th>Local</th><th>Sistema actual</th><th>No-shows</th><th>Pérdida estimada</th></tr></thead>
-        <tbody>
-          <tr><td>Barbería A · Surquillo</td><td>WhatsApp manual</td><td>10–20% (1–2 de cada 10)</td><td>S/ 150–200 por semana</td></tr>
-          <tr><td>Barbería B · Miraflores</td><td>Fresha + WhatsApp</td><td>1–2 personas por jornada</td><td>S/ 120–200 por periodo</td></tr>
-          <tr><td>Barbería C · Miraflores</td><td>Fresha</td><td>1–2 personas por periodo</td><td>S/ 70–140 por periodo</td></tr>
-          <tr><td>Barbería D · La Molina</td><td>Presencial, rara vez WhatsApp</td><td>~2 personas por periodo</td><td>S/ 45–50 por periodo</td></tr>
-        </tbody>
-      </table>
+    <p class="eyebrow">Validación en campo · Lima</p>
+    <h2 class="h-lg" style="margin-top:12px">Cuatro locales, el mismo hueco en la agenda.</h2>
+    <p class="lead">Conversamos con barberías de Surquillo, Miraflores y La Molina. Estas cifras son reportes de entrevistas y usan la unidad indicada por cada local.</p>
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="case-top"><span class="case-place">Surquillo</span><span class="case-mark">JP</span></div>
+        <h3>Jean Paul</h3>
+        <p>Coordina sus reservas por WhatsApp manual y pierde tiempo persiguiendo confirmaciones.</p>
+        <div class="case-result"><strong>10–20%</strong><span>de no-shows reportados</span></div>
+        <small>S/ 150–200 perdidos por semana</small>
+      </article>
+      <article class="case-card">
+        <div class="case-top"><span class="case-place">Miraflores</span><span class="case-mark">PB</span></div>
+        <h3>Perfect Balance</h3>
+        <p>Usa Fresha y WhatsApp, pero todavía necesita recuperar las horas que quedan vacías.</p>
+        <div class="case-result"><strong>1–2</strong><span>ausencias por jornada</span></div>
+        <small>S/ 120–200 por periodo reportado</small>
+      </article>
+      <article class="case-card">
+        <div class="case-top"><span class="case-place">Miraflores</span><span class="case-mark">R</span></div>
+        <h3>Royalty</h3>
+        <p>Cuenta con Fresha, pero busca que el cliente responda más rápido desde WhatsApp.</p>
+        <div class="case-result"><strong>1–2</strong><span>ausencias por periodo</span></div>
+        <small>S/ 70–140 por periodo reportado</small>
+      </article>
+      <article class="case-card">
+        <div class="case-top"><span class="case-place">La Molina</span><span class="case-mark">RM</span></div>
+        <h3>Ramos</h3>
+        <p>Atiende principalmente de forma presencial y quiere facilitar las reservas online.</p>
+        <div class="case-result"><strong>~2</strong><span>ausencias por periodo</span></div>
+        <small>S/ 45–50 por periodo reportado</small>
+      </article>
+    </div>
+    <p class="case-disclaimer">La muestra es pequeña: sirve para orientar el piloto, no para generalizar el resultado a todas las barberías.</p>
+  </div>
+</section>
+
+<!-- ============ CONFIANZA Y SEGURIDAD ============ -->
+<section class="section security">
+  <div class="wrap">
+    <div class="security-intro">
+      <p class="eyebrow">Diseñado para operar tranquilo</p>
+      <h2 class="h-lg" style="margin-top:12px">Menos mensajes pendientes. Más control sobre cada cita.</h2>
+      <p class="lead">El cliente no necesita contraseña, pero cada acción sensible sí necesita una prueba válida.</p>
+    </div>
+    <div class="security-grid">
+      <article class="security-item"><span class="security-icon">01</span><div><h3>Enlaces de un solo uso</h3><p>Confirmar o cancelar requiere un token temporal, separado por acción y almacenado de forma segura.</p></div></article>
+      <article class="security-item"><span class="security-icon">02</span><div><h3>Sin doble reserva</h3><p>La agenda valida el cupo y la base de datos rechaza la colisión aunque lleguen dos solicitudes juntas.</p></div></article>
+      <article class="security-item"><span class="security-icon">03</span><div><h3>Datos bajo control</h3><p>Validamos entradas, limitamos tamaños y aislamos las acciones del dueño por local.</p></div></article>
+      <article class="security-item"><span class="security-icon">04</span><div><h3>Protección en el borde</h3><p>El despliegue contempla WAF, mitigación DDoS y rate limiting para reservas y webhooks.</p></div></article>
     </div>
   </div>
 </section>
@@ -174,12 +211,12 @@
         <p class="price">S/ 0</p>
         <p class="muted small">Para empezar a recibir reservas</p>
         <ul><li>Página y enlace del local</li><li>Reservas web ilimitadas</li><li>Agenda y recordatorios</li></ul>
-        <a class="btn btn-ghost btn-block" href="registro.html">Crear mi página</a>
+        <a class="btn btn-ghost btn-block" href="registro.html?new=1">Crear mi página</a>
       </div>
       <div class="plan pro">
         <div class="row"><h3 class="h-sm">PRO</h3><span class="tag tag-pro">Próximamente</span></div>
-        <p class="price">S/ [__]</p>
-        <p class="muted small">al mes · precio por validar</p>
+        <p class="price">S/ 45</p>
+        <p class="muted small">al mes</p>
         <ul><li>Números: ingresos y no-shows</li><li>Métricas por barbero</li><li>Historial completo de clientes</li></ul>
         <a class="btn btn-block" href="#contacto">Quiero el piloto</a>
       </div>

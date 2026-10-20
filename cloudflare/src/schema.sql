@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS reminder_logs;
+DROP TABLE IF EXISTS appointment_tokens;
 DROP TABLE IF EXISTS appointments;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS barbers;
@@ -75,6 +76,21 @@ CREATE TABLE appointments (
   FOREIGN KEY(customer_id) REFERENCES customers(id),
   FOREIGN KEY(barber_id) REFERENCES barbers(id),
   FOREIGN KEY(service_id) REFERENCES services(id)
+);
+
+CREATE UNIQUE INDEX appointments_slot_idx
+  ON appointments (shop_id, barber_id, scheduled_at)
+  WHERE status NOT IN ('cancelled', 'cancelada');
+
+CREATE TABLE appointment_tokens (
+  id TEXT PRIMARY KEY,
+  appointment_id TEXT NOT NULL,
+  token_hash TEXT UNIQUE NOT NULL,
+  action TEXT NOT NULL CHECK (action IN ('confirm', 'cancel')),
+  expires_at TEXT NOT NULL,
+  used_at TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(appointment_id) REFERENCES appointments(id)
 );
 
 CREATE TABLE reminder_logs (

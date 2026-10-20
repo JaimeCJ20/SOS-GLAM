@@ -16,6 +16,89 @@ export default {
     }
 
     try {
+      // Registro inicial del local y su cuenta de propietario.
+      if (path === '/api/auth/register' && request.method === 'POST') {
+        const body = await request.json();
+        const shopName = String(body.shopName || '').trim();
+        const address = String(body.address || '').trim();
+        const district = String(body.district || '').trim();
+        const phone = String(body.phone || '').trim();
+        const ownerName = String(body.ownerName || '').trim();
+        const email = String(body.email || '').trim().toLowerCase();
+        const password = String(body.password || '');
+        const services = Array.isArray(body.services) ? body.services : [];
+
+        if (!shopName || !ownerName || !email || !password) {
+          return json({ error: 'Completa el nombre del local, tu nombre, correo y contraseña' }, 400);
+        }
+        if (shopName.length > 120 || ownerName.length > 120 || address.length > 160 || district.length > 80 || phone.length > 32) {
+          return json({ error: 'Los datos enviados no tienen un formato válido' }, 400);
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || password.length < 8 || password.length > 128) {
+          return json({ error: 'Usa un correo válido y una contraseña de al menos 8 caracteres' }, 400);
+        }
+
+        const existingUser = await env.DB.prepare('SELECT id FROM users WHERE lower(email) = ?').bind(email).first();
+        if (existingUser) return json({ error: 'Ya existe una cuenta con ese correo' }, 409);
+
+        const baseSlug = slugify(shopName) || 'mi-local';
+        let slug = baseSlug;
+        let suffix = 2;
+        while (suffix < 100 && await env.DB.prepare('SELECT id FROM shops WHERE slug = ?').bind(slug).first()) {
+          slug = baseSlug + '-' + suffix++;
+        }
+        if (suffix >= 100) return json({ error: 'No se pudo generar un slug disponible para el local' }, 409);
+
+        const shopId = crypto.randomUUID();
+        const userId = crypto.randomUUID();
+        const barberId = crypto.randomUUID();
+        const passwordHash = await hashPassword(password);
+        const createdAt = new Date().toISOString();
+        const statements = [
+          env.DB.prepare(`INSERT INTO shops (id, name, slug, address, district, phone, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`)
+            .bind(shopId, shopName, slug, address || null, district || null, phone || null, createdAt),
+          env.DB.prepare(`INSERT INTO users (id, shop_id, email, name, role, password_hash, auth_provider, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+            .bind(userId, shopId, email, ownerName, 'owner', passwordHash, 'email', createdAt),
+          env.DB.prepare(`INSERT INTO barbers (id, shop_id, name, specialty, active) VALUES (?, ?, ?, ?, ?)`)
+            .bind(barberId, shopId, ownerName, 'Propietario', 1)
+        ];
+
+        const validServices = services.map(function (service, index) {
+          const name = String(service.name || '').trim().slice(0, 80);
+          const price = Number(service.price);
+          const duration = Number(service.durationMinutes);
+          if (!name || !Number.isInteger(price) || price < 0 || !Number.isInteger(duration) || duration < 5 || duration > 480) return null;
+          return { id: crypto.randomUUID(), name, price, duration, index };
+        }).filter(Boolean).slice(0, 30);
+
+        if (!validServices.length) {
+          validServices.push({ id: crypto.randomUUID(), name: 'Servicio principal', price: 0, duration: 45 });
+        }
+        validServices.forEach(function (service) {
+          statements.push(env.DB.prepare(`INSERT INTO services (id, shop_id, name, price, duration_minutes, active) VALUES (?, ?, ?, ?, ?, ?)`)
+            .bind(service.id, shopId, service.name, service.price, service.duration, 1));
+        });
+        try {
+          await env.DB.batch(statements);
+        } catch (error) {
+          console.error('Error D1 Batch:', error);
+          const message = String(error && error.message || error);
+          if (message.toLowerCase().includes('unique')) {
+            return json({ error: 'El correo o el slug del local ya existe', details: message }, 409);
+          }
+          return json({ error: 'No se pudo crear la cuenta', details: message }, 500);
+        }
+
+        const token = await createToken({
+          sub: userId,
+          shopId,
+          email,
+          role: 'owner',
+          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 8
+        }, env);
+        return json({ ok: true, token, user: { id: userId, email, name: ownerName, role: 'owner', shopId }, shop: { id: shopId, name: shopName, slug } }, 201);
+      }
+
       // 1. Inicio de sesión
       if (path === '/api/auth/login' && request.method === 'POST') {
         const body = await request.json();
@@ -152,6 +235,15 @@ export default {
           return json({ error: 'Faltan campos obligatorios: customerName, phone, serviceId, scheduledAt' }, 400);
         }
 
+        if (customerName.length > 120 || phone.length > 32 || scheduledAt.length > 40) {
+          return json({ error: 'Los datos enviados no tienen un formato válido' }, 400);
+        }
+
+        const scheduledTimestamp = parsePeruAppointmentDate(scheduledAt);
+        if (scheduledTimestamp === null || scheduledTimestamp <= Date.now()) {
+          return json({ error: 'La fecha de la cita no es válida' }, 400);
+        }
+
         const service = await env.DB.prepare('SELECT * FROM services WHERE id = ? AND shop_id = ?').bind(serviceId, shop.id).first();
         if (!service) {
           return json({ error: 'Servicio no encontrado' }, 404);
@@ -174,19 +266,52 @@ export default {
           return json({ error: 'No hay barberos disponibles en este local' }, 400);
         }
 
-        await env.DB.prepare(`
-          INSERT INTO appointments (id, shop_id, customer_id, barber_id, service_id, scheduled_at, duration_minutes, status, reminder_sent, notes)
-          VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', 0, ?)
-        `).bind(
-          appointmentId,
-          shop.id,
-          customer.id,
-          finalBarberId,
-          service.id,
-          scheduledAt,
-          service.duration_minutes,
-          body.notes || 'Reserva creada por el cliente'
-        ).run();
+        const occupied = await env.DB.prepare(`
+          SELECT id FROM appointments
+          WHERE shop_id = ? AND barber_id = ? AND scheduled_at = ?
+            AND status NOT IN ('cancelled', 'cancelada')
+          LIMIT 1
+        `).bind(shop.id, finalBarberId, scheduledAt).first();
+        if (occupied) {
+          return json({ error: 'Ese horario ya fue reservado' }, 409);
+        }
+
+        try {
+          await env.DB.prepare(`
+            INSERT INTO appointments (id, shop_id, customer_id, barber_id, service_id, scheduled_at, duration_minutes, status, reminder_sent, notes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', 0, ?)
+          `).bind(
+            appointmentId,
+            shop.id,
+            customer.id,
+            finalBarberId,
+            service.id,
+            scheduledAt,
+            service.duration_minutes,
+            String(body.notes || 'Reserva creada por el cliente').slice(0, 500)
+          ).run();
+        } catch (error) {
+          if (String(error.message).toLowerCase().includes('unique')) {
+            return json({ error: 'Ese horario ya fue reservado' }, 409);
+          }
+          throw error;
+        }
+
+        const actionTokens = {};
+        for (const action of ['confirm', 'cancel']) {
+          const token = base64UrlEncode(crypto.getRandomValues(new Uint8Array(32)));
+          await env.DB.prepare(`
+            INSERT INTO appointment_tokens (id, appointment_id, token_hash, action, expires_at)
+            VALUES (?, ?, ?, ?, ?)
+          `).bind(
+            crypto.randomUUID(),
+            appointmentId,
+            await hashToken(token),
+            action,
+            new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
+          ).run();
+          actionTokens[action] = token;
+        }
 
         const created = await env.DB.prepare(`
           SELECT a.*, s.name AS service_name, b.name AS barber_name, c.name AS customer_name
@@ -197,21 +322,57 @@ export default {
           WHERE a.id = ?
         `).bind(appointmentId).first();
 
-        return json({ ok: true, appointment: created }, 201);
+        return json({ ok: true, appointment: created, actionTokens }, 201);
+      }
+
+      // Acción pública desde un enlace firmado y de un solo uso.
+      if (path === '/api/appointments/action' && request.method === 'POST') {
+        const body = await request.json();
+        const token = String(body.token || '').trim();
+        const action = String(body.action || '').trim().toLowerCase();
+        if (!token || !['confirm', 'cancel'].includes(action)) {
+          return json({ error: 'Token o acción no válidos' }, 400);
+        }
+
+        const tokenRecord = await env.DB.prepare(`
+          SELECT id, appointment_id FROM appointment_tokens
+          WHERE token_hash = ? AND action = ? AND used_at IS NULL AND expires_at > ?
+          LIMIT 1
+        `).bind(await hashToken(token), action, new Date().toISOString()).first();
+        if (!tokenRecord) return json({ error: 'El enlace no es válido o ya fue usado' }, 410);
+
+        const used = await env.DB.prepare(`
+          UPDATE appointment_tokens SET used_at = ?
+          WHERE id = ? AND used_at IS NULL
+        `).bind(new Date().toISOString(), tokenRecord.id).run();
+        if (used.meta.changes !== 1) return json({ error: 'El enlace ya fue usado' }, 410);
+
+        const status = action === 'cancel' ? 'cancelada' : 'confirmada';
+        await env.DB.prepare('UPDATE appointments SET status = ? WHERE id = ?').bind(status, tokenRecord.appointment_id).run();
+        return json({ ok: true, appointmentId: tokenRecord.appointment_id, status });
       }
 
       // 9. Actualizar estado de cita
       const statusPatchMatch = path.match(/^\/api\/appointments\/([^/]+)\/status$/);
       if (statusPatchMatch && request.method === 'PATCH') {
         const appointmentId = decodeURIComponent(statusPatchMatch[1]);
+        const session = await authenticate(request, env);
+        if (!session) return json({ error: 'No autorizado' }, 401);
         const body = await request.json();
-        const status = String(body.status || '').trim();
+        const status = String(body.status || '').trim().toLowerCase();
 
         if (!status) {
           return json({ error: 'Se requiere status' }, 400);
         }
 
-        const result = await env.DB.prepare('UPDATE appointments SET status = ? WHERE id = ?').bind(status, appointmentId).run();
+        if (!['pending', 'confirmada', 'confirmed', 'cancelada', 'cancelled', 'llego', 'novino'].includes(status)) {
+          return json({ error: 'Estado de cita no válido' }, 400);
+        }
+
+        const result = await env.DB.prepare(`
+          UPDATE appointments SET status = ?
+          WHERE id = ? AND shop_id = ?
+        `).bind(status, appointmentId, session.shopId).run();
         if (result.meta.changes === 0) {
           return json({ error: 'Cita no encontrada' }, 404);
         }
@@ -271,6 +432,36 @@ async function createToken(payload, env) {
   return signToken({ alg: 'HS256', typ: 'JWT' }, payload, env);
 }
 
+async function hashToken(token) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token));
+  return base64UrlEncode(new Uint8Array(digest));
+}
+
+function parsePeruAppointmentDate(value) {
+  const trimmed = String(value || '').trim();
+  const localDatePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?$/;
+  const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(trimmed);
+  if (!localDatePattern.test(trimmed) && !hasTimezone) return null;
+
+  // Inputs from the public booking form are local Lima time when no offset is supplied.
+  const normalized = hasTimezone ? trimmed : `${trimmed}-05:00`;
+  const timestamp = Date.parse(normalized);
+  if (Number.isNaN(timestamp)) return null;
+
+  const peruDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Lima',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  }).format(new Date(timestamp));
+  if (!peruDate) return null;
+  return timestamp;
+}
+
 async function authenticate(request, env) {
   const header = request.headers.get('Authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : '';
@@ -315,4 +506,24 @@ async function verifyPassword(password, encodedHash) {
   } catch (error) {
     return false;
   }
+}
+
+function slugify(value) {
+  return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+}
+
+function bytesToHex(bytes) {
+  return Array.from(bytes).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hashPassword(password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    key,
+    256
+  );
+  return `pbkdf2$100000$${bytesToHex(salt)}$${bytesToHex(new Uint8Array(bits))}`;
 }

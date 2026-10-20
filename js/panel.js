@@ -1,7 +1,7 @@
 // SOS GLAM · panel.js — agenda con datos reales desde la API de Cloudflare
 (function () {
   var API_BASE = 'https://sos-glam-api.zircon-botany.workers.dev';
-  var SHOP_SLUG = 'el-flaco';
+  var SHOP_SLUG = localStorage.getItem('shopSlug') || 'el-flaco';
   var agenda = document.getElementById('agenda');
   var token = localStorage.getItem('token');
 
