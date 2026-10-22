@@ -3,20 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOS GLAM · Que tu cliente avise a tiempo</title>
+<title>StylisHub · Tu plataforma de reservas inteligente</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/landing.css">
+
+<!-- Guard de Autenticación Centralizado (Verifica si el usuario existe o redirige a login) -->
+<script src="js/auth-guard.js"></script>
 </head>
 <body>
 
 <!-- ============ ENCABEZADO + HERO ============ -->
 <header class="hero">
-  <div class="topbar" style="background:transparent">
+  <div class="topbar">
     <div class="wrap">
-      <a class="logo" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>SOS GLAM</a>
+      <a class="logo" href="index.html">
+        <img src="assets/img/name_logo_v1.png" alt="StylisHub" class="logo-img">
+      </a>
       <nav aria-label="Principal">
         <a href="#como">Cómo funciona</a>
         <a href="#evidencia">Evidencia</a>
@@ -30,21 +35,20 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">Para barberías y salones</p>
-        <h1 class="h-xl" style="margin-top:14px">Si el cliente no va a venir, que te avise antes de la hora.</h1>
-        <p class="sub">SOS GLAM envía el recordatorio por WhatsApp con un enlace para confirmar o cancelar con un toque, y libera tu agenda cuando alguien cancela. Tu cliente no instala nada.</p>
+        <p class="eyebrow">Para barberías y salones de belleza</p>
+        <h1 class="h-xl" style="margin-top:14px">Si el cliente no va a venir, que te avise a tiempo.</h1>
+        <p class="sub">StylisHub envía recordatorios por WhatsApp con enlaces directos para confirmar o cancelar en un toque, liberando tu agenda al instante. Sin contraseñas ni apps que instalar.</p>
         <div class="actions">
-          <a class="btn" href="reservar.html">Ver la reserva de tu cliente</a>
+          <a class="btn" href="reservar.html">Ver demo de reserva</a>
           <a class="btn btn-ghost" href="#como">Cómo funciona</a>
         </div>
       </div>
       <div class="hero-visual">
-        <svg class="pole" viewBox="0 0 80 360" aria-hidden="true"><defs><pattern id="st" width="80" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><rect width="80" height="16" fill="#B23A3A"/><rect y="16" width="80" height="16" fill="#F4F1EA"/><rect y="32" width="80" height="16" fill="#3C6E71"/></pattern><clipPath id="tube"><rect x="14" y="34" width="52" height="292" rx="10"/></clipPath></defs><rect x="10" y="0" width="60" height="40" rx="10" fill="#C9A227"/><rect x="10" y="320" width="60" height="40" rx="10" fill="#C9A227"/><g clip-path="url(#tube)"><rect x="14" y="34" width="52" height="292" fill="url(#st)"/></g><rect x="20" y="40" width="8" height="280" rx="4" fill="#fff" opacity=".25"/></svg>
         <div class="phone" role="group" aria-label="Demo del recordatorio de cita">
           <div class="chat" id="chat">
-            <div class="chat-head">WhatsApp · recordatorio de SOS GLAM</div>
-            <div class="bubble">Hola Carlos, tu corte es mañana a las 4:00 p. m. en Barbería El Flaco. Confirma o cancela aquí: sosglam.pe/c/k3x9</div>
-            <div class="cap">Al tocar el enlace se abre tu cita:</div>
+            <div class="chat-head">WhatsApp · Recordatorio StylisHub</div>
+            <div class="bubble">Hola Carlos, tu cita es mañana a las 4:00 p. m. en Barbería El Flaco. Confirma o cancela aquí: stylishub.pe/c/k3x9</div>
+            <div class="cap">Al tocar el enlace se gestiona tu cita:</div>
             <div class="replies" id="replies">
               <button type="button" data-a="yes">Confirmo mi cita</button>
               <button type="button" data-a="no">No podré asistir</button>
@@ -52,7 +56,7 @@
             <div class="slot" id="slot"><span>Mañana 4:00 p. m.</span><b>Reservado</b></div>
           </div>
         </div>
-        <p class="demo-note">Toca una respuesta y mira qué pasa con la agenda.</p>
+        <p class="demo-note">Toca una respuesta y mira cómo se actualiza la agenda.</p>
       </div>
     </div>
   </div>
@@ -62,28 +66,27 @@
 <!-- ============ PROBLEMA ============ -->
 <section class="section" id="problema">
   <div class="wrap">
-    <p class="eyebrow">El problema</p>
-    <h2 class="h-lg" style="margin-top:12px">Las 4 barberías entrevistadas reportaron citas vacías.</h2>
-    <p class="lead">En nuestras primeras 4 entrevistas en Surquillo, Miraflores y La Molina, las 4 contaron que pierden citas por ausencias, incluso las que usan software. Es una muestra pequeña: orienta, no generaliza.</p>
+    <p class="eyebrow">El problema del sector</p>
+    <h2 class="h-lg" style="margin-top:12px">Citas vacías que recortan los ingresos diarios.</h2>
+    <p class="lead">Entrevistas en locales de Surquillo, Miraflores y La Molina confirman pérdidas constantes por ausencias no notificadas (no-shows).</p>
     <div class="stats">
-      <div class="stat"><strong>4 de 4</strong><span>locales entrevistados tienen no-shows</span></div>
-      <div class="stat"><strong>10–20%</strong><span>tasa de no-show reportada por una barbería</span></div>
-      <div class="stat"><strong>~2 h</strong><span>diarias en WhatsApp, según esa misma barbería</span></div>
-      <div class="stat"><strong>S/ 200</strong><span>pérdida máxima reportada por un local</span></div>
+      <div class="stat"><strong>4 de 4</strong><span>locales con problemas de ausencias</span></div>
+      <div class="stat"><strong>10–20%</strong><span>tasa promedio de no-show reportada</span></div>
+      <div class="stat"><strong>~2 h</strong><span>diarias perdidas coordinando por WhatsApp</span></div>
+      <div class="stat"><strong>S/ 200</strong><span>pérdida semanal estimada por sillón</span></div>
     </div>
-    <p class="callout">Estimación: ~2 h diarias en un local equivalen a unas 60 h al mes. Es el dato de una barbería, no un promedio.</p>
   </div>
 </section>
 
 <!-- ============ CÓMO FUNCIONA ============ -->
 <section class="section" id="como" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">Cómo funciona</p>
-    <h2 class="h-lg" style="margin-top:12px">Tres pasos, con WhatsApp como canal.</h2>
+    <p class="eyebrow">La solución StylisHub</p>
+    <h2 class="h-lg" style="margin-top:12px">Gestión fluida en tres simples pasos.</h2>
     <ol class="steps">
-      <li><h3>Reserva sin instalar nada</h3><p>Tu cliente reserva en la página de tu local. Tú dejas de anotar citas a mano.</p></li>
-      <li><h3>Recordatorio con enlace</h3><p>Antes de la cita sale un mensaje de WhatsApp con un enlace para confirmar o cancelar.</p></li>
-      <li><h3>Cancela en un toque</h3><p>Si no puede ir, toca “No podré asistir” y el horario se libera en tu agenda.</p></li>
+      <li><h3>Reserva en segundos</h3><p>Tu cliente ingresa a tu enlace propio y elige horario libre. Sin logins ni registros largos.</p></li>
+      <li><h3>Recordatorio automático</h3><p>Llega un mensaje con un enlace firmado único antes de la cita.</p></li>
+      <li><h3>Agenda sincronizada</h3><p>Si el cliente cancela en un clic, el espacio se libera inmediatamente en tu panel.</p></li>
     </ol>
   </div>
 </section>
@@ -91,111 +94,25 @@
 <!-- ============ FUNCIONES ============ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">Lo que incluye</p>
-    <h2 class="h-lg" style="margin-top:12px">Todo tu local en una sola pantalla.</h2>
+    <p class="eyebrow">Herramientas incluidas</p>
+    <h2 class="h-lg" style="margin-top:12px">Todo tu negocio centralizado en StylisHub.</h2>
     <div class="features">
       <article class="feature">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="10" width="34" height="31" rx="4"/><path d="M7 19h34M16 6v8M32 6v8"/></svg>
-        <h3>Agenda por barbero</h3><p>Una columna por silla. Mueve citas arrastrando.</p>
+        <h3>Agenda por Barbero</h3><p>Vista ordenada por columnas/sillas para control total de turnos y caminantes (walk-ins).</p>
       </article>
       <article class="feature">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 38 12 30a15 15 0 1 1 6 6z"/><path d="M19 22h10M19 27h6"/></svg>
-        <h3>Recordatorios</h3><p>Mensaje de WhatsApp con enlace para confirmar o cancelar.</p>
+        <h3>Recordatorios 1-Clic</h3><p>Mensajes directos por WhatsApp con tokens de acción instantáneos.</p>
       </article>
       <article class="feature">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="17" r="7"/><path d="M6 40c0-7 5-12 12-12s12 5 12 12"/><circle cx="34" cy="19" r="5"/><path d="M33 29c6 0 10 4 10 10"/></svg>
-        <h3>Clientes</h3><p>Quién viene, cada cuánto y quién suele faltar.</p>
+        <h3>Base de Clientes</h3><p>Historial de asistencias, frecuencia y contacto directo.</p>
       </article>
       <article class="feature">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20 10 8h28l4 12M6 20v20h36V20M18 40V28h12v12"/></svg>
-        <h3>Tu página</h3><p>Un enlace propio para compartir en Instagram y WhatsApp.</p>
+        <h3>Tu Enlace Propio</h3><p>Link listo para pegar en la biografía de Instagram, TikTok o WhatsApp Business.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ COMPARACIÓN ============ -->
-<section class="section vs">
-  <div class="wrap">
-    <p class="eyebrow">Lo que escuchamos</p>
-    <h2 class="h-lg" style="margin-top:12px">Lo que nos contaron los locales.</h2>
-    <div class="cmp">
-      <div class="col">
-        <h3>Hoy, según las entrevistas</h3>
-        <ul>
-          <li>Una barbería con WhatsApp manual dedica ~2 h al día a coordinar citas.</li>
-          <li>Dos barberías con Fresha reportan 1–2 ausencias por jornada o periodo.</li>
-          <li>Una pide una forma simple para que el cliente avise que no irá.</li>
-          <li>Una atiende presencial y quiere que sus clientes puedan agendar.</li>
-        </ul>
-      </div>
-      <div class="col us">
-        <h3>Lo que vamos a probar</h3>
-        <ul>
-          <li>Recordatorio por WhatsApp con enlace para confirmar o cancelar.</li>
-          <li>Cancelación en un toque que libera el horario.</li>
-          <li>Agenda en tiempo real para el local.</li>
-          <li>Por validar en un piloto: cuánto reduce los no-shows.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="note-dark">Fresha también envía recordatorios automáticos. El piloto medirá si el enlace por WhatsApp mejora la respuesta del cliente.</p>
-  </div>
-</section>
-
-<!-- ============ CASOS REALES ============ -->
-<section class="section" id="evidencia">
-  <div class="wrap">
-    <p class="eyebrow">Validación en campo · Lima</p>
-    <h2 class="h-lg" style="margin-top:12px">Cuatro locales, el mismo hueco en la agenda.</h2>
-    <p class="lead">Conversamos con barberías de Surquillo, Miraflores y La Molina. Estas cifras son reportes de entrevistas y usan la unidad indicada por cada local.</p>
-    <div class="case-grid">
-      <article class="case-card">
-        <div class="case-top"><span class="case-place">Surquillo</span><span class="case-mark">JP</span></div>
-        <h3>Jean Paul</h3>
-        <p>Coordina sus reservas por WhatsApp manual y pierde tiempo persiguiendo confirmaciones.</p>
-        <div class="case-result"><strong>10–20%</strong><span>de no-shows reportados</span></div>
-        <small>S/ 150–200 perdidos por semana</small>
-      </article>
-      <article class="case-card">
-        <div class="case-top"><span class="case-place">Miraflores</span><span class="case-mark">PB</span></div>
-        <h3>Perfect Balance</h3>
-        <p>Usa Fresha y WhatsApp, pero todavía necesita recuperar las horas que quedan vacías.</p>
-        <div class="case-result"><strong>1–2</strong><span>ausencias por jornada</span></div>
-        <small>S/ 120–200 por periodo reportado</small>
-      </article>
-      <article class="case-card">
-        <div class="case-top"><span class="case-place">Miraflores</span><span class="case-mark">R</span></div>
-        <h3>Royalty</h3>
-        <p>Cuenta con Fresha, pero busca que el cliente responda más rápido desde WhatsApp.</p>
-        <div class="case-result"><strong>1–2</strong><span>ausencias por periodo</span></div>
-        <small>S/ 70–140 por periodo reportado</small>
-      </article>
-      <article class="case-card">
-        <div class="case-top"><span class="case-place">La Molina</span><span class="case-mark">RM</span></div>
-        <h3>Ramos</h3>
-        <p>Atiende principalmente de forma presencial y quiere facilitar las reservas online.</p>
-        <div class="case-result"><strong>~2</strong><span>ausencias por periodo</span></div>
-        <small>S/ 45–50 por periodo reportado</small>
-      </article>
-    </div>
-    <p class="case-disclaimer">La muestra es pequeña: sirve para orientar el piloto, no para generalizar el resultado a todas las barberías.</p>
-  </div>
-</section>
-
-<!-- ============ CONFIANZA Y SEGURIDAD ============ -->
-<section class="section security">
-  <div class="wrap">
-    <div class="security-intro">
-      <p class="eyebrow">Diseñado para operar tranquilo</p>
-      <h2 class="h-lg" style="margin-top:12px">Menos mensajes pendientes. Más control sobre cada cita.</h2>
-      <p class="lead">El cliente no necesita contraseña, pero cada acción sensible sí necesita una prueba válida.</p>
-    </div>
-    <div class="security-grid">
-      <article class="security-item"><span class="security-icon">01</span><div><h3>Enlaces de un solo uso</h3><p>Confirmar o cancelar requiere un token temporal, separado por acción y almacenado de forma segura.</p></div></article>
-      <article class="security-item"><span class="security-icon">02</span><div><h3>Sin doble reserva</h3><p>La agenda valida el cupo y la base de datos rechaza la colisión aunque lleguen dos solicitudes juntas.</p></div></article>
-      <article class="security-item"><span class="security-icon">03</span><div><h3>Datos bajo control</h3><p>Validamos entradas, limitamos tamaños y aislamos las acciones del dueño por local.</p></div></article>
-      <article class="security-item"><span class="security-icon">04</span><div><h3>Protección en el borde</h3><p>El despliegue contempla WAF, mitigación DDoS y rate limiting para reservas y webhooks.</p></div></article>
     </div>
   </div>
 </section>
@@ -203,22 +120,22 @@
 <!-- ============ PRECIOS ============ -->
 <section class="section" id="precios" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">Precios</p>
-    <h2 class="h-lg" style="margin-top:12px">Empieza gratis. Paga cuando te sirva.</h2>
+    <p class="eyebrow">Planes</p>
+    <h2 class="h-lg" style="margin-top:12px">Comienza gratis y escala con tu local.</h2>
     <div class="plans">
       <div class="plan">
-        <h3 class="h-sm">Gratis</h3>
+        <h3 class="h-sm">Starter</h3>
         <p class="price">S/ 0</p>
-        <p class="muted small">Para empezar a recibir reservas</p>
-        <ul><li>Página y enlace del local</li><li>Reservas web ilimitadas</li><li>Agenda y recordatorios</li></ul>
-        <a class="btn btn-ghost btn-block" href="registro.html?new=1">Crear mi página</a>
+        <p class="muted small">Para nuevos locales y barberos independientes</p>
+        <ul><li>Página pública de reservas</li><li>Gestión de servicios y agenda</li><li>Recordatorios manuales por WhatsApp</li></ul>
+        <a class="btn btn-ghost btn-block" href="registro.html?new=1">Registrar mi negocio</a>
       </div>
       <div class="plan pro">
-        <div class="row"><h3 class="h-sm">PRO</h3><span class="tag tag-pro">Próximamente</span></div>
-        <p class="price">S/ 45</p>
-        <p class="muted small">al mes</p>
-        <ul><li>Números: ingresos y no-shows</li><li>Métricas por barbero</li><li>Historial completo de clientes</li></ul>
-        <a class="btn btn-block" href="#contacto">Quiero el piloto</a>
+        <div class="row"><h3 class="h-sm">PRO</h3><span class="tag tag-pro">Popular</span></div>
+        <p class="price">S/ 45 <span class="small muted">/mes</span></p>
+        <p class="muted small">Para locales con alto flujo de atención</p>
+        <ul><li>Recordatorios automatizados</li><li>Métricas de ingresos y ausencias</li><li>Múltiples sillas/barberos</li></ul>
+        <a class="btn btn-block" href="#contacto">Solicitar Piloto PRO</a>
       </div>
     </div>
   </div>
@@ -227,16 +144,19 @@
 <!-- ============ CTA ============ -->
 <section class="section cta" id="contacto">
   <div class="wrap">
-    <h2 class="h-lg">Probemos el recordatorio en tu barbería.</h2>
-    <p>Armamos un piloto corto para medir cuántas ausencias se evitan. Escríbenos y coordinamos.</p>
-    <a class="btn" href="https://wa.me/?text=Hola%20SOS%20GLAM%2C%20quiero%20un%20piloto%20en%20mi%20barber%C3%ADa" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    <h2 class="h-lg">Moderniza las reservas de tu local hoy.</h2>
+    <p>Prueba StylisHub y reduce las sillas vacías en tu agenda.</p>
+    <a class="btn" href="https://wa.me/?text=Hola%20StylisHub%2C%20quiero%20probar%20la%20plataforma%20en%20mi%20local" target="_blank" rel="noopener">Escribir por WhatsApp</a>
   </div>
 </section>
 </main>
 
 <footer class="footer">
   <div class="wrap">
-    <span>SOS GLAM · Proyecto StartUp ESAN 2026-2</span>
+    <a class="logo" href="index.html">
+      <img src="assets/img/sh_logo.png" alt="StylisHub SH" style="height:28px; width:auto;">
+    </a>
+    <span>StylisHub · Proyecto StartUp ESAN 2026-2</span>
     <span class="spacer"></span>
     <a href="login.html">Ingresar</a>
     <a href="#">Términos</a>
