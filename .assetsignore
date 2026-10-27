@@ -1,4 +1,4 @@
-# Archivos que NO se publican en sos-glam.zircon-botany.workers.dev
+# Archivos que NO se publican en el Worker stylishub
 .git
 .gitignore
 .assetsignore

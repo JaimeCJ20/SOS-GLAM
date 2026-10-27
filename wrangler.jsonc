@@ -2,7 +2,7 @@
 // La API vive aparte en cloudflare/wrangler.toml (sos-glam-api).
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "sos-glam",
+  "name": "stylishub",
   "account_id": "ed61355abd9d90ca8a99741a6fdacead",
   "compatibility_date": "2025-07-01",
   "assets": {
