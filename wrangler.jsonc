@@ -1,0 +1,11 @@
+// Worker del sitio público (solo archivos estáticos).
+// La API vive aparte en cloudflare/wrangler.toml (sos-glam-api).
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "sos-glam",
+  "account_id": "ed61355abd9d90ca8a99741a6fdacead",
+  "compatibility_date": "2025-07-01",
+  "assets": {
+    "directory": "."
+  }
+}

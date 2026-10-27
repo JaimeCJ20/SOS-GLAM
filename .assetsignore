@@ -1,0 +1,10 @@
+# Archivos que NO se publican en sos-glam.zircon-botany.workers.dev
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+node_modules
+.wrangler
+cloudflare
+README.md
+*.lnk
