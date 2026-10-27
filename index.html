@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/landing.css">
 
-<!-- Guard de Autenticación Centralizado (Verifica si el usuario existe o redirige a login) -->
+<!-- Guard de Autenticación Centralizado (Permite páginas públicas) -->
 <script src="js/auth-guard.js"></script>
 </head>
 <body>
@@ -19,16 +19,16 @@
 <header class="hero">
   <div class="topbar">
     <div class="wrap">
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <img src="assets/img/name_logo_v1.png" alt="StylisHub" class="logo-img">
       </a>
       <nav aria-label="Principal">
+        <a href="#buscar">Buscar Local</a>
         <a href="#como">Cómo funciona</a>
-        <a href="#evidencia">Evidencia</a>
         <a href="#precios">Precios</a>
-        <a href="login.html">Ingresar</a>
+        <a href="/login" id="nav-login-btn">Ingresar</a>
       </nav>
-      <a class="btn btn-sm" href="registro.html?new=1">Crear mi página</a>
+      <a class="btn btn-sm" id="nav-action-btn" href="/registro">Crear mi página</a>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
         <h1 class="h-xl" style="margin-top:14px">Si el cliente no va a venir, que te avise a tiempo.</h1>
         <p class="sub">StylisHub envía recordatorios por WhatsApp con enlaces directos para confirmar o cancelar en un toque, liberando tu agenda al instante. Sin contraseñas ni apps que instalar.</p>
         <div class="actions">
-          <a class="btn" href="reservar.html">Ver demo de reserva</a>
+          <a class="btn" href="#buscar">Reservar en un local</a>
           <a class="btn btn-ghost" href="#como">Cómo funciona</a>
         </div>
       </div>
@@ -63,6 +63,21 @@
 </header>
 
 <main>
+<!-- ============ SECCIÓN DE BÚSQUEDA PARA CLIENTES ============ -->
+<section class="section" id="buscar" style="background: var(--surface-2); border-bottom: 1px solid var(--line);">
+  <div class="wrap">
+    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+      <p class="eyebrow">¿Eres cliente?</p>
+      <h2 class="h-lg" style="margin: 10px auto 20px;">Encuentra tu barbería o salón favorito</h2>
+      <form id="search-form" class="row" style="gap: 10px; flex-wrap: wrap;" onsubmit="handleSearch(event)">
+        <input type="text" id="search-slug" class="input" placeholder="Escribe el nombre del local (ej. el-flaco)" style="flex: 1; min-width: 240px;">
+        <button type="submit" class="btn">Ir a reservar</button>
+      </form>
+      <p id="search-error" class="small muted" style="margin-top: 10px; color: var(--red);" hidden>No encontramos ese local. Intenta con otro nombre.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROBLEMA ============ -->
 <section class="section" id="problema">
   <div class="wrap">
@@ -128,7 +143,7 @@
         <p class="price">S/ 0</p>
         <p class="muted small">Para nuevos locales y barberos independientes</p>
         <ul><li>Página pública de reservas</li><li>Gestión de servicios y agenda</li><li>Recordatorios manuales por WhatsApp</li></ul>
-        <a class="btn btn-ghost btn-block" href="registro.html?new=1">Registrar mi negocio</a>
+        <a class="btn btn-ghost btn-block" href="/registro">Registrar mi negocio</a>
       </div>
       <div class="plan pro">
         <div class="row"><h3 class="h-sm">PRO</h3><span class="tag tag-pro">Popular</span></div>
@@ -153,12 +168,12 @@
 
 <footer class="footer">
   <div class="wrap">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <img src="assets/img/sh_logo.png" alt="StylisHub SH" style="height:28px; width:auto;">
     </a>
     <span>StylisHub · Proyecto StartUp ESAN 2026-2</span>
     <span class="spacer"></span>
-    <a href="login.html">Ingresar</a>
+    <a href="/login">Ingresar</a>
     <a href="#">Términos</a>
     <a href="#">Privacidad</a>
   </div>

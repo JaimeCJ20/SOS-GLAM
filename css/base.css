@@ -71,6 +71,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   background: var(--sh-gradient-brand);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

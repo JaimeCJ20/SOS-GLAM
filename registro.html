@@ -1,79 +1,206 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crea tu página · SOS GLAM</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/public.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de Negocio · StylisHub</title>
+  <link rel="icon" href="assets/img/sh_logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/public.css">
+
+  <!-- Guard de Autenticación -->
+  <script src="js/auth-guard.js"></script>
+
+  <!-- API de Google Maps Places -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIEHICnO5LDDCTbxGeXYwcXIdRBkgDe-Y&libraries=places"
+    async defer></script>
 </head>
+
 <body>
-<!--
-  ASISTENTE DE REGISTRO (onboarding) · 5 pasos
-  Este archivo muestra el paso 2 (Servicios). Los demás pasos usan el
-  mismo esqueleto: barra lateral + contenido + pie con Atrás / Siguiente.
--->
-<div class="wizard">
-  <aside class="wizard-side">
-    <a class="logo" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>SOS GLAM</a>
-    <ol class="wizard-steps">
-      <li class="done"><span>✓</span>Tu local</li>
-      <li class="current"><span>2</span>Servicios</li>
-      <li><span>3</span>Equipo y horarios</li>
-      <li><span>4</span>Fotos y redes</li>
-      <li><span>5</span>Tu enlace</li>
-    </ol>
-    <p class="small" style="color:#8D8977;margin-top:48px">Te toma unos 10 minutos. Puedes cambiar todo después.</p>
-  </aside>
 
-  <main class="wizard-main">
-    <div class="wizard-header">
-      <p id="wizard-eyebrow" class="eyebrow">Paso 2 de 5</p>
-      <button id="reset-registration" class="btn btn-ghost btn-sm" type="button">Reiniciar registro</button>
-    </div>
-    <h1 id="wizard-title" class="h-lg" style="margin-top:10px">¿Qué servicios ofreces?</h1>
-    <p id="wizard-lead" class="lead">Marca los que haces y ajusta precio y duración. La duración define qué horas se muestran libres.</p>
-    <div class="progress" aria-hidden="true"><i id="wizard-progress" style="width:40%"></i></div>
+  <div class="split">
+    <!-- Lateral Informativo B2B -->
+    <aside class="split-brand">
+      <div>
+        <div class="brand-header">
+          <a class="logo" href="/">
+            <img src="assets/img/name_logo_v2.png" alt="StylisHub" class="logo-img brand-logo">
+          </a>
+        </div>
 
-    <section id="step-local" hidden>
-      <div class="form-grid">
-        <div class="field full"><label class="label" for="shop-name">Nombre del local</label><input class="input" id="shop-name" type="text" placeholder="Barbería El Flaco"></div>
-        <div class="field"><label class="label" for="shop-district">Distrito</label><input class="input" id="shop-district" type="text" placeholder="Miraflores"></div>
-        <div class="field"><label class="label" for="shop-phone">WhatsApp del local</label><input class="input" id="shop-phone" type="tel" placeholder="987 654 321"></div>
+        <!-- Bloque "Ya tienes cuenta" visible al inicio -->
+        <div class="already-account-box">
+          <span>¿Ya tienes una cuenta?</span>
+          <a class="btn btn-ghost btn-sm" href="/login">Ingresar al Panel</a>
+        </div>
+
+        <h2>Empieza a recibir reservas sin ausencias.</h2>
+        <p>Crea la página web de tu barbería o salón en 2 minutos y automatiza tus recordatorios por WhatsApp.</p>
+
+        <div class="split-features">
+          <div class="split-feature-item">
+            <span>✓</span> Agenda inteligente por sillas y barberos.
+          </div>
+          <div class="split-feature-item">
+            <span>✓</span> Cancelación de citas en 1 solo clic.
+          </div>
+          <div class="split-feature-item">
+            <span>✓</span> Sin contraseñas ni apps para tus clientes.
+          </div>
+        </div>
       </div>
-      <button id="continue-local" class="btn" type="button" style="margin-top:24px">Continuar con servicios</button>
-    </section>
+    </aside>
 
-    <section id="step-services">
-    <div class="svc-rows">
-      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte"><b>Corte</b><input class="input" value="S/ 25" aria-label="Precio"><input class="input" value="45 min" aria-label="Duración"></div>
-      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Corte + barba"><b>Corte + barba</b><input class="input" value="S/ 35" aria-label="Precio"><input class="input" value="75 min" aria-label="Duración"></div>
-      <div class="svc-row"><input type="checkbox" checked aria-label="Activar Barba"><b>Barba</b><input class="input" value="S/ 15" aria-label="Precio"><input class="input" value="30 min" aria-label="Duración"></div>
-      <div class="svc-row off"><input type="checkbox" aria-label="Activar Tinte"><b>Tinte</b><input class="input" value="S/ 80" aria-label="Precio"><input class="input" value="90 min" aria-label="Duración"></div>
-      <div class="svc-row off"><input type="checkbox" aria-label="Activar Perfilado"><b>Perfilado</b><input class="input" value="S/ 12" aria-label="Precio"><input class="input" value="30 min" aria-label="Duración"></div>
-    </div>
-    <button id="add-service" class="btn btn-ghost btn-sm" type="button" style="margin-top:16px">+ Agregar otro servicio</button>
-    </section>
-
-    <section id="step-account" hidden>
-      <div class="form-grid">
-        <div class="field full"><label class="label" for="owner-name">Tu nombre</label><input class="input" id="owner-name" type="text" autocomplete="name" placeholder="Juan Pérez"></div>
-        <div class="field full"><label class="label" for="owner-email">Correo para entrar a tu panel</label><input class="input" id="owner-email" type="email" autocomplete="email" placeholder="tu@barberia.com"></div>
-        <div class="field full"><label class="label" for="owner-password">Contraseña</label><input class="input" id="owner-password" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo 8 caracteres" required></div>
+    <!-- Formulario Principal B2B -->
+    <main class="split-form">
+      <div class="mobile-brand-bar">
+        <a href="/">
+          <img src="assets/img/name_logo_v1.png" alt="StylisHub" class="brand-logo">
+        </a>
+        <a class="btn btn-ghost btn-sm" href="/login">Ingresar</a>
       </div>
-      <p id="registration-status" class="msg msg-warn" hidden role="alert" style="margin-top:20px"></p>
-      <button id="finish-registration" class="btn" type="button" style="margin-top:24px">Crear mi página</button>
-    </section>
 
-    <div class="wizard-foot">
-      <a id="wizard-back" class="btn btn-ghost" href="registro.html?step=1">Atrás</a>
-      <button id="wizard-next" class="btn" type="button">Continuar</button>
-    </div>
-  </main>
-</div>
-<script src="js/registro.js"></script>
+      <div style="margin-bottom: 28px;">
+        <p class="eyebrow">Alta de Negocio</p>
+        <h1 class="h-lg" style="margin-top: 6px;">Registra tu local</h1>
+      </div>
+
+      <form id="register-form" onsubmit="handleRegistration(event)">
+        <!-- Sección 1: Datos de la Cuenta -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span>1</span> Acceso del Propietario
+          </div>
+          <div class="form-grid">
+            <div class="field full">
+              <label class="label" for="owner-name">Tu Nombre Completo *</label>
+              <input class="input" id="owner-name" type="text" placeholder="Ej. Carlos Mendoza" required>
+            </div>
+            <div class="field">
+              <label class="label" for="owner-email">Correo Electrónico *</label>
+              <input class="input" id="owner-email" type="email" placeholder="contacto@tubarberia.com" required>
+            </div>
+            <div class="field">
+              <label class="label" for="owner-password">Contraseña *</label>
+              <input class="input" id="owner-password" type="password" minlength="8" placeholder="Mínimo 8 caracteres"
+                required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección 2: Datos del Negocio y Ubicación -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span>2</span> Datos del Local
+          </div>
+          <div class="form-grid">
+            <div class="field full">
+              <label class="label" for="shop-name">Nombre Comercial del Local *</label>
+              <input class="input" id="shop-name" type="text" placeholder="Barbería El Flaco"
+                oninput="updateSlugPreview()" required>
+            </div>
+
+            <div class="field full">
+              <label class="label">Búsqueda de Dirección (Google Maps)</label>
+              <div class="maps-search-box">
+                <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <input class="input" id="maps-autocomplete" type="text"
+                  placeholder="Busca tu dirección en el mapa o escríbela abajo">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="shop-address">Dirección Exacta</label>
+              <input class="input" id="shop-address" type="text" placeholder="Av. Larco 123">
+            </div>
+            <div class="field">
+              <label class="label" for="shop-district">Distrito / Zona</label>
+              <input class="input" id="shop-district" type="text" placeholder="Miraflores">
+            </div>
+
+            <div class="field">
+              <label class="label" for="shop-phone">WhatsApp del Local</label>
+              <input class="input" id="shop-phone" type="tel" placeholder="987654321">
+            </div>
+            <div class="field">
+              <label class="label" for="shop-tax">RUC / DNI (Opcional)</label>
+              <input class="input" id="shop-tax" type="text" placeholder="10987654321">
+            </div>
+
+            <div class="field full">
+              <label class="label">Tu Enlace Personalizado</label>
+              <div class="slug-preview">
+                stylishub.com/<strong id="slug-text">mi-local</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección 3: Documentación Legales -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span>3</span> Documentación (Opcional)
+          </div>
+          <p class="small muted" style="margin-bottom: 14px;">Puedes adjuntar copia de DNI, RUC o Licencia de
+            Funcionamiento (Imágenes o PDF).</p>
+
+          <div class="file-dropzone" onclick="document.getElementById('file-input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <p class="small" style="color: var(--ink); font-weight: 600;">Haz clic o arrastra tus archivos aquí</p>
+            <p class="small muted">Formatos soportados: .pdf, .png, .jpg (Máx. 5MB)</p>
+            <input type="file" id="file-input" multiple accept=".pdf,.png,.jpg,.jpeg" style="display: none;"
+              onchange="handleFileSelect(event)">
+          </div>
+
+          <div id="file-list" class="file-list"></div>
+        </div>
+
+        <!-- Sección 4: Servicios Iniciales -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span>4</span> Servicios Iniciales
+          </div>
+          <div class="svc-rows" id="svc-container">
+            <div class="svc-row">
+              <input type="checkbox" checked aria-label="Seleccionar Corte">
+              <b>Corte Tradicional</b>
+              <input class="input" value="30" placeholder="Precio S/" aria-label="Precio">
+              <input class="input" value="30" placeholder="Minutos" aria-label="Duración">
+            </div>
+            <div class="svc-row">
+              <input type="checkbox" checked aria-label="Seleccionar Barba">
+              <b>Perfilado de Barba</b>
+              <input class="input" value="20" placeholder="Precio S/" aria-label="Precio">
+              <input class="input" value="20" placeholder="Minutos" aria-label="Duración">
+            </div>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" onclick="addServiceRow()" style="margin-top: 14px;">+
+            Agregar otro servicio</button>
+        </div>
+
+        <p id="register-error" class="msg msg-warn" style="margin-bottom: 16px;" hidden></p>
+
+        <button type="submit" id="btn-submit" class="btn btn-block btn-lg">
+          Crear mi Negocio en StylisHub
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <script src="js/registro.js"></script>
 </body>
+
 </html>

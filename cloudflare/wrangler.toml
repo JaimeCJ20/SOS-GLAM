@@ -2,11 +2,21 @@ account_id = "ed61355abd9d90ca8a99741a6fdacead"
 name = "sos-glam-api"
 main = "src/worker.js"
 compatibility_date = "2025-07-01"
+minify = true
 
 [[d1_databases]]
 binding = "DB"
 database_name = "sos-glam"
 database_id = "7b75c94f-aa69-4f4b-bec2-899bca0acddb"
 
+[vars]
+ENVIRONMENT = "production"
+
 [observability]
 enabled = true
+
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 } # Máximo 10 peticiones por minuto

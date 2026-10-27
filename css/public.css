@@ -1,107 +1,339 @@
-/* SOS GLAM · public.css — reservar, cita, login y registro */
+/* =========================================================
+   StylisHub · public.css — Layouts Públicos, Registro y Checkout
+   ========================================================= */
 
-/* ---------- Perfil del local (reservar.html) ---------- */
-.shop-cover{height:220px;background:linear-gradient(120deg,#2A2230 0%,#3C2E40 45%,#6B4A2A 100%);position:relative}
-.shop-cover::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-35deg,rgba(255,255,255,.04) 0 18px,transparent 18px 36px)}
-.shop-head{display:flex;gap:24px;align-items:flex-start;margin-top:-56px;position:relative}
-.shop-logo{width:112px;height:112px;border-radius:24px;background:var(--hero-bg);border:4px solid var(--bg);display:grid;place-items:center;color:var(--gold);flex:none}
-.shop-logo svg{width:56px;height:56px}
-.shop-meta{padding-top:70px;color:var(--ink);text-decoration:none}
-.shop-meta h1{font-size:40px}
-.shop-meta p{color:var(--muted);margin-top:6px}
-.shop-links{display:flex;gap:8px;margin-left:auto;padding-top:78px}
-.pill{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);text-decoration:none}
+/* ---------- Split Layout (Login & Registro B2B) ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  min-height: 100dvh; /* dvh evita brincos por la barra de navegación móvil */
+  background: var(--bg);
+}
 
-/* ---------- Layout de reserva ---------- */
-.booking{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start;margin:40px 0 96px}
-.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;margin-bottom:20px}
-.step-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 15px var(--font-display);flex:none}
-.step-head h2{font-size:22px}
+.split-brand {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: clamp(32px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
 
-/* Servicios */
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.svc{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:16px 18px;cursor:pointer}
-.svc:hover{border-color:var(--ink)}
-.svc[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold);background:var(--gold-soft)}
-.svc b{display:block;font-size:16px}
-.svc small{color:var(--muted)}
-.svc .price{font:700 18px var(--font-display);white-space:nowrap}
+.split-brand::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: var(--sh-gradient-glow);
+  pointer-events: none;
+}
 
-/* Barberos */
-.barbers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.barber{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font:inherit;color:inherit;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:18px 10px;cursor:pointer}
-.barber:hover{border-color:var(--ink)}
-.barber[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
-.barber b{font-size:15px}
-.barber small{color:var(--muted);font-size:13px;line-height:1.3}
+.split-brand h2 {
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+  margin-top: 24px;
+}
 
-/* Horario */
-.slot-group{margin-top:18px}
-.slot-group .label{display:block;margin-bottom:8px}
+.split-brand p {
+  color: var(--muted);
+  font-size: 16px;
+  margin-top: 12px;
+}
 
-/* Resumen fijo */
-.summary{position:sticky;top:24px;background:var(--hero-bg);color:var(--hero-ink);border-radius:var(--radius-lg);padding:28px}
-.summary h3{font-size:22px;margin-bottom:18px}
-.summary dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0 0 20px;font-size:15px}
-.summary dt{color:#8D8977}
-.summary dd{margin:0;text-align:right}
-.summary .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #3A3A42;padding-top:16px;margin-bottom:20px}
-.summary .total b{font:700 28px var(--font-display);color:var(--gold)}
-.summary .hint{color:#8D8977;text-align:center;margin-top:12px}
+.split-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 0;
+}
 
-/* ---------- Cita (cita.html) ---------- */
-.center-page{min-height:calc(100vh - 140px);display:grid;place-items:center;padding:56px 20px}
-.confirm{width:100%;max-width:560px}
-.confirm-icon{width:72px;height:72px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;margin:0 auto 20px}
-.confirm-icon svg{width:36px;height:36px}
-.detail{display:grid;grid-template-columns:auto 1fr;gap:12px 20px;background:var(--surface-2);border-radius:var(--radius);padding:20px;margin:24px 0}
-.detail dt{color:var(--muted);font-size:14px}
-.detail dd{margin:0;font-weight:500}
-.actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.split-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--ink);
+}
 
-/* ---------- Login / registro (split) ---------- */
-.split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
-.split-brand{background:var(--hero-bg);color:var(--hero-ink);padding:48px 64px;display:flex;flex-direction:column;justify-content:space-between}
-.split-brand h2{font-size:40px;max-width:16ch}
-.split-brand p{color:var(--hero-muted);margin-top:16px;max-width:40ch}
-.quote{border-left:3px solid var(--gold);padding-left:18px;color:var(--hero-muted);font-size:15px}
-.split-form{display:grid;place-items:center;padding:48px 32px}
-.auth{width:100%;max-width:400px}
-.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;margin:20px 0}
-.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-.btn-google{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
-.btn-google:hover{background:var(--surface-2)}
+.split-feature-item span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(157, 84, 246, 0.15);
+  color: var(--sh-purple);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex: none;
+}
 
-/* ---------- Asistente de registro ---------- */
-.wizard{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
-.wizard-side{background:var(--hero-bg);color:var(--hero-ink);padding:40px 32px}
-.wizard-steps{list-style:none;padding:0;margin:48px 0 0;display:flex;flex-direction:column;gap:6px}
-.wizard-steps li{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;color:#8D8977;font-size:15px}
-.wizard-steps li span{width:28px;height:28px;border-radius:50%;border:1.5px solid #4A4A52;display:grid;place-items:center;font-size:13px;font-weight:600;flex:none}
-.wizard-steps li.done{color:var(--hero-muted)}
-.wizard-steps li.done span{background:var(--teal);border-color:var(--teal);color:#fff}
-.wizard-steps li.current{background:var(--hero-surface);color:var(--hero-ink)}
-.wizard-steps li.current span{background:var(--gold);border-color:var(--gold);color:#1B1B1F}
-.wizard-main{padding:56px 72px;max-width:860px}
-.wizard-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.progress{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin:16px 0 40px}
-.progress i{display:block;height:100%;background:var(--gold);border-radius:999px}
-.svc-rows{display:flex;flex-direction:column;gap:10px}
-.svc-row{display:grid;grid-template-columns:auto 1fr 120px 120px;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px}
-.svc-row.off{opacity:.55}
-.svc-row input[type=checkbox]{width:20px;height:20px;accent-color:var(--gold)}
-.svc-row .input{padding:8px 12px}
-.wizard-foot{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.split-form {
+  padding: clamp(24px, 5vw, 56px);
+  overflow-y: auto;
+  max-width: 840px;
+  width: 100%;
+  margin: 0 auto;
+}
 
-@media (max-width:900px){
-  .booking,.split,.wizard{grid-template-columns:1fr}
-  .summary{position:static}
-  .barbers{grid-template-columns:1fr 1fr}
-  .svc-grid{grid-template-columns:1fr}
-  .split-brand,.wizard-side{display:none}
-  .wizard-main{padding:32px 20px}
-  .wizard-header{align-items:flex-start;flex-direction:column;gap:12px}
-  .svc-row{grid-template-columns:auto 1fr;}
-  .shop-links{display:none}
+.form-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 4vw, 28px);
+  margin-bottom: 24px;
+}
+
+.form-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+}
+
+.form-section-title span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--sh-gradient-brand);
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Ajuste del Logo y Cabecera B2B ---------- */
+.brand-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  height: clamp(54px, 6vw, 72px) !important; /* Logo ampliado y responsivo */
+  width: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  background: var(--surface-2);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+}
+
+/* ---------- Caja "Ya tienes una cuenta" ---------- */
+.already-account-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+}
+
+.already-account-box span {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Header que solo aparece en celulares/tablets */
+.mobile-brand-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-brand-bar .brand-logo {
+  height: 48px !important;
+}
+
+/* ---------- Buscador Google Maps / Autocomplete ---------- */
+.maps-search-box {
+  position: relative;
+}
+
+.maps-search-box .input {
+  padding-left: 38px;
+}
+
+.maps-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--sh-pink);
+  pointer-events: none;
+}
+
+/* ---------- Uploader de Archivos Legales (PDF / Imágenes) ---------- */
+.file-dropzone {
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.file-dropzone:hover {
+  border-color: var(--sh-purple);
+  background: rgba(157, 84, 246, 0.05);
+}
+
+.file-dropzone svg {
+  width: 36px;
+  height: 36px;
+  color: var(--sh-purple);
+  margin-bottom: 8px;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.file-item-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-item-remove {
+  color: var(--red);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+/* ---------- Filas de Servicios Rápido ---------- */
+.svc-rows { display: flex; flex-direction: column; gap: 10px; }
+.svc-row {
+  display: grid;
+  grid-template-columns: auto 1fr 110px 110px;
+  gap: 12px;
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.svc-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--sh-purple);
+}
+
+/* ---------- Preview en Vivo del Enlace ---------- */
+.slug-preview {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  word-break: break-all;
+}
+
+.slug-preview strong {
+  color: var(--sh-pink);
+}
+
+/* =========================================================
+   ADAPTABILIDAD RESPONSIVA (Tablets y Celulares)
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  
+  .split-brand {
+    display: none; /* Se oculta el panel lateral publicitario en móvil */
+  }
+
+  .mobile-brand-bar {
+    display: flex; /* Se activa la cabecera limpia para celular */
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* Formulario en 1 sola columna */
+  }
+
+  .svc-row {
+    grid-template-columns: auto 1fr;
+    row-gap: 8px;
+  }
+
+  .svc-row .input {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .split-form {
+    padding: 20px 14px;
+  }
+
+  .already-account-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .already-account-box .btn {
+    width: 100%;
+  }
+
+  .svc-row {
+    grid-template-columns: auto 1fr;
+    padding: 12px;
+  }
 }
